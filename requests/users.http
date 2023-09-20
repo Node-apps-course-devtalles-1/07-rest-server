@@ -1,0 +1,19 @@
+@URL = http://localhost:8080 
+
+### get request
+GET {{URL}}/api/users?id=32432
+
+### post request
+POST {{URL}}/api/users
+content-type: application/json
+
+{
+    "nombre": "Henry Gustav",
+    "id": "2134128431"
+}
+
+### delete user
+DELETE {{URL}}/api/users
+
+### put request
+PUT {{URL}}/api/users/10?q=hello&name=Henry&apiKey=12383280
