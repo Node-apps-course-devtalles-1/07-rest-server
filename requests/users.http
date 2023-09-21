@@ -1,4 +1,5 @@
-@URL = http://localhost:8080 
+# @URL = http://localhost:8080 
+@URL =  https://rest-server-basic.onrender.com
 
 ### get request
 GET {{URL}}/api/users?id=32432
