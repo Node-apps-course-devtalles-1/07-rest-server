@@ -9,8 +9,11 @@ POST {{URL}}/api/users
 content-type: application/json
 
 {
-    "nombre": "Henry Gustav",
-    "id": "2134128431"
+    "name": "Henry Gustav1",
+    "google": true,
+    "email": "test558@gmail.com",
+    "password": "123256",
+    "role": "VENTAS_ROLE"
 }
 
 ### delete user
