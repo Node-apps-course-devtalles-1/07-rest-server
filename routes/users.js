@@ -7,13 +7,26 @@ import {
 } from '../controllers/users.js'
 import { check } from 'express-validator'
 import { validarCampos } from '../middlewares/validar-campos.js'
-import Role from '../models/rol.js'
-import { isValidRole } from '../helpers/db-validators.js'
+import {
+  isValidRole,
+  verifyEmailExist,
+  verifyUserExist
+} from '../helpers/db-validators.js'
 const router = Router()
 
 router.get('/', usersGet)
 
-router.put('/:id', usersPut)
+router.put(
+  '/:id',
+  [
+    check('id', 'Id is not valid').isMongoId(),
+    check('id').custom(verifyUserExist),
+    check('role').custom(isValidRole),
+
+    validarCampos
+  ],
+  usersPut
+)
 
 router.post(
   '/',
@@ -24,7 +37,7 @@ router.post(
       min: 6
     }),
     check('email', 'This email is not valid').isEmail(),
-    // check('role', 'Role is not valid').isIn(['ADMIN_ROLE', 'USER_ROLE']),
+    check('email').custom(verifyEmailExist),
     // check('role', 'Role is not valid').isIn(['ADMIN_ROLE', 'USER_ROLE']),
     check('role').custom(isValidRole),
     validarCampos

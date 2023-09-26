@@ -2,16 +2,19 @@
 # @URL =  https://rest-server-basic.onrender.com
 
 ### get request
-GET {{URL}}/api/users?id=32432
+GET {{URL}}/api/users
+
+### get request limit
+GET {{URL}}/api/users?limit=cdsfdcw&skip=5
 
 ### post request
 POST {{URL}}/api/users
 content-type: application/json
 
 {
-    "name": "Henry Gustav1",
+    "name": "Henry Gustav15",
     "google": true,
-    "email": "test558@gmail.com",
+    "email": "test15@gmail.com",
     "password": "123256",
     "role": "VENTAS_ROLE"
 }
@@ -20,4 +23,13 @@ content-type: application/json
 DELETE {{URL}}/api/users
 
 ### put request
-PUT {{URL}}/api/users/10?q=hello&name=Henry&apiKey=12383280
+PUT {{URL}}/api/users/65130c645ea7136d7d3e168f
+content-type: application/json
+
+{
+    "name": "Henry Gustav2-**--",
+    "google": true,
+    "email": "test559@gmail.com@@@-",
+    "password": "123256",
+    "role": "VENTAS_ROLE"
+}

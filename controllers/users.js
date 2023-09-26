@@ -1,25 +1,19 @@
 import { response, request } from 'express'
 import User from '../models/user.js'
 import bcryptjs from 'bcryptjs'
+import mongoose from 'mongoose'
 
-export const usersGet = (req = request, res = response) => {
-  const query = req.query
-  res.json({ mgs: 'get API - controller', query })
+export const usersGet = async (req = request, res = response) => {
+  const { limit = 5, skip = 0 } = req.query
+  const users = await User.find().skip(Number(skip)).limit(Number(limit))
+
+  res.json({ users })
 }
 
 export const usersPost = async (req, res) => {
   const { name, email, password, role } = req.body
 
   const user = new User({ name, email, password, role })
-
-  // verify if exist
-  const existEmail = await User.findOne({ email })
-
-  if (existEmail) {
-    return res.status(400).json({
-      msg: 'This email is already register'
-    })
-  }
 
   // encrypt
   const salt = bcryptjs.genSaltSync()
@@ -30,9 +24,20 @@ export const usersPost = async (req, res) => {
   res.status(201).json({ user })
 }
 
-export const usersPut = (req, res) => {
+export const usersPut = async (req, res) => {
   const { id } = req.params
-  res.status(500).json({ mgs: 'put API - controller', id })
+  const { _id, password, google, email, ...rest } = req.body
+  // validar with DB
+
+  if (password) {
+    const salt = bcryptjs.genSaltSync()
+    rest.password = bcryptjs.hashSync(password, salt)
+  }
+
+  const idMongo = new mongoose.Types.ObjectId(id)
+
+  const user = await User.findOneAndUpdate(idMongo, rest)
+  res.json({ user })
 }
 
 export const usersDelete = (req, res) => {
