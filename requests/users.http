@@ -1,5 +1,5 @@
-@URL = http://localhost:8080 
-# @URL =  https://rest-server-basic.onrender.com
+# @URL = http://localhost:8080 
+@URL =  https://rest-server-basic.onrender.com
 
 ### get request
 GET {{URL}}/api/users
@@ -12,15 +12,15 @@ POST {{URL}}/api/users
 content-type: application/json
 
 {
-    "name": "Henry Gustav15",
+    "name": "Henry Gustav16",
     "google": true,
-    "email": "test15@gmail.com",
+    "email": "test16@gmail.com",
     "password": "123256",
     "role": "VENTAS_ROLE"
 }
 
 ### delete user
-DELETE {{URL}}/api/users
+DELETE {{URL}}/api/users/65134a0acfca4f8277deebe2
 
 ### put request
 PUT {{URL}}/api/users/65130c645ea7136d7d3e168f

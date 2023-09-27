@@ -5,9 +5,16 @@ import mongoose from 'mongoose'
 
 export const usersGet = async (req = request, res = response) => {
   const { limit = 5, skip = 0 } = req.query
-  const users = await User.find().skip(Number(skip)).limit(Number(limit))
+  const query = { status: true }
+  // const users = await User.find(query).skip(Number(skip)).limit(Number(limit))
 
-  res.json({ users })
+  // const total = await User.countDocuments(query)
+
+  const [total, users] = await Promise.all([
+    User.countDocuments(query),
+    User.find(query).skip(Number(skip)).limit(Number(limit))
+  ])
+  res.json({ total, users })
 }
 
 export const usersPost = async (req, res) => {
@@ -40,6 +47,13 @@ export const usersPut = async (req, res) => {
   res.json({ user })
 }
 
-export const usersDelete = (req, res) => {
-  res.json({ mgs: 'delete API - controller' })
+export const usersDelete = async (req, res) => {
+  const { id } = req.params
+
+  // borrando fisicamente
+  // const user = await User.findByIdAndDelete(id)
+
+  // change state user
+  const user = await User.findByIdAndUpdate(id, { status: false })
+  res.json({ user })
 }

@@ -45,6 +45,14 @@ router.post(
   usersPost
 )
 
-router.delete('/', usersDelete)
+router.delete(
+  '/:id',
+  [
+    check('id', 'Id is not valid').isMongoId(),
+    check('id').custom(verifyUserExist),
+    validarCampos
+  ],
+  usersDelete
+)
 
 export default router
