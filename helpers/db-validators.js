@@ -30,3 +30,19 @@ export const verifyUserExist = async (id) => {
     throw new Error(`Id: ${id} no exist or this is not valid`)
   }
 }
+
+export const verifyEmailExistLogin = async (email) => {
+  const existEmail = await user.findOne({ email })
+
+  if (!existEmail) {
+    throw new Error(`Email or password are incorrect !!`)
+  }
+}
+
+export const verifyUserIsEnable = async (email) => {
+  const userFind = await user.findOne({ email })
+
+  if (userFind && !userFind.status) {
+    throw new Error(`User not found !!`)
+  }
+}

@@ -1,0 +1,11 @@
+@URL = http://localhost:8080 
+# @URL =  https://rest-server-basic.onrender.com
+
+### get request
+POST {{URL}}/api/auth/login
+content-type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password": "123256"
+}

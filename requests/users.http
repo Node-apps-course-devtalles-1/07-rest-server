@@ -1,20 +1,20 @@
-# @URL = http://localhost:8080 
-@URL =  https://rest-server-basic.onrender.com
+@URL = http://localhost:8080 
+# @URL =  https://rest-server-basic.onrender.com
 
 ### get request
 GET {{URL}}/api/users
 
 ### get request limit
-GET {{URL}}/api/users?limit=cdsfdcw&skip=5
+GET {{URL}}/api/users?limit=15&skip=5
 
 ### post request
 POST {{URL}}/api/users
 content-type: application/json
 
 {
-    "name": "Henry Gustav16",
+    "name": "Henry Gustav17",
     "google": true,
-    "email": "test16@gmail.com",
+    "email": "test17@gmail.com",
     "password": "123256",
     "role": "VENTAS_ROLE"
 }

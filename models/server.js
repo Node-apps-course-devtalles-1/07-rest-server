@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import authRoutes from '../routes/auth.js'
 import userRoutes from '../routes/users.js'
 import { dbConnection } from '../database/config.js'
 
@@ -8,6 +9,7 @@ export class Server {
     this.app = express()
     this.port = process.env.PORT
     this.usuariosPath = '/api/users'
+    this.authPath = '/api/auth'
     // connect DB
     this.connectDB()
     // midlewares
@@ -31,6 +33,7 @@ export class Server {
   }
 
   routes() {
+    this.app.use(this.authPath, authRoutes)
     this.app.use(this.usuariosPath, userRoutes)
   }
 
