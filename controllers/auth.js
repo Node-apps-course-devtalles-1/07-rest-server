@@ -1,6 +1,7 @@
 import bcryptjs from 'bcryptjs'
 import { response } from 'express'
 import user from '../models/user.js'
+import { generateJWT } from '../helpers/generateJWT.js'
 
 export const login = async (req, res = response) => {
   const { email, password } = req.body
@@ -17,10 +18,11 @@ export const login = async (req, res = response) => {
         msg: 'user or password incorrect !!'
       })
     }
+
+    const token = await generateJWT(userFind.id)
     res.json({
-      msg: 'login ok',
-      email,
-      password
+      user: userFind,
+      token
     })
   } catch (error) {
     console.log(error)
