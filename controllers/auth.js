@@ -7,7 +7,6 @@ import { googleVerify } from '../helpers/google-verify.js'
 export const login = async (req, res = response) => {
   const { email, password } = req.body
 
-
   try {
     const userFind = await User.findOne({ email })
     // validar password
@@ -40,7 +39,6 @@ export const googleSingIn = async (req, res = response) => {
 
     let userFind = await User.findOne({ email })
 
-
     let userToCreate = null
     let userCreated = null
     if (!userFind) {
@@ -56,7 +54,7 @@ export const googleSingIn = async (req, res = response) => {
       userCreated = await userToCreate.save()
     }
 
-    if (!userFind.status) {
+    if (userFind && !userFind.status) {
       return res.status(401).json({
         msg: 'User blocked - contact administrator'
       })
@@ -65,7 +63,7 @@ export const googleSingIn = async (req, res = response) => {
     // const token = await generateJWT(user.id)
 
     res.json({
-      data: userCreated || userFind || null
+      data: userFind || userCreated || null
       // token
     })
   } catch (err) {
