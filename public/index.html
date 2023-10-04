@@ -47,6 +47,9 @@
           .then((resp) => {
             console.log({ resp })
             localStorage.setItem('email', resp.data.user.email)
+            setTimeout(() => {
+              location.reload()
+            }, 1000);
           })
           .catch((err) => console.log({ err }))
       }
