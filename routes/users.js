@@ -12,10 +12,14 @@ import {
   verifyUserExist
 } from '../helpers/db-validators.js'
 
-import { validarCampos } from '../middlewares/validar-campos.js'
-import { validateJWT } from '../middlewares/validar-jwt.js'
-import { hasRole, isAdminRole } from '../middlewares/validate-rols.js'
+// import { validarCampos } from '../middlewares/validar-campos.js'
+// import { validateJWT } from '../middlewares/validar-jwt.js'
+// import { hasRole, isAdminRole } from '../middlewares/validate-rols.js'
+// import { validarCampos, validateJWT } from '../middlewares/index.js'
+// import validaC from '../middlewares/validar-campos.js'
+import { validarCampos, validateJWT, hasRole } from '../middlewares/index.js'
 
+// console.log({validaC})
 const router = Router()
 
 router.get('/', usersGet)
@@ -54,7 +58,7 @@ router.delete(
   [
     validateJWT,
     // isAdminRole,
-    hasRole('ADMIN_ROLE', 'VENTAS_ROLE'),
+    hasRole('VENTAS_ROLE'),
     check('id', 'Id is not valid').isMongoId(),
     check('id').custom(verifyUserExist),
     validarCampos

@@ -39,3 +39,7 @@ export const validateJWT = async (req, res = response, next) => {
     })
   }
 }
+
+export default {
+  validateJWT
+}

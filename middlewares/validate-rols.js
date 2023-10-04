@@ -1,6 +1,6 @@
 import { response } from 'express'
 
-export const isAdminRole = async (req, res = response, next) => {
+const isAdminRole = async (req, res = response, next) => {
   if (!req.userAuthenticated) {
     return res.status(500).json({
       msg: 'Try verify role before validate token'
@@ -32,4 +32,9 @@ export const hasRole = (...rols) => {
     }
     next()
   }
+}
+
+export default {
+  hasRole,
+  isAdminRole
 }

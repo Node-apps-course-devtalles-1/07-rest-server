@@ -9,3 +9,7 @@ export const validarCampos = async (req = request, res = response, next) => {
 
   next()
 }
+
+export default {
+  validarCampos
+}
