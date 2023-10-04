@@ -19,7 +19,6 @@ import {
 // import validaC from '../middlewares/validar-campos.js'
 import { validarCampos, validateJWT, hasRole } from '../middlewares/index.js'
 
-// console.log({validaC})
 const router = Router()
 
 router.get('/', usersGet)

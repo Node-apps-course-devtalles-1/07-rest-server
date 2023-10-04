@@ -19,7 +19,6 @@ const isAdminRole = async (req, res = response, next) => {
 
 export const hasRole = (...rols) => {
   return (req, res = response, next) => {
-    console.log({ rols })
     if (!req.userAuthenticated) {
       return res.status(500).json({
         msg: 'Try verify role before validate token'

@@ -1,8 +1,13 @@
 import { Router } from 'express'
-import { login } from '../controllers/auth.js'
+import { googleSingIn, login } from '../controllers/auth.js'
 import { check } from 'express-validator'
 import { validarCampos } from '../middlewares/validar-campos.js'
-import { verifyEmailExist, verifyEmailExistLogin, verifyUserExist, verifyUserIsEnable } from '../helpers/db-validators.js'
+import {
+  verifyEmailExist,
+  verifyEmailExistLogin,
+  verifyUserExist,
+  verifyUserIsEnable
+} from '../helpers/db-validators.js'
 
 const router = Router()
 
@@ -17,6 +22,12 @@ router.post(
     validarCampos
   ],
   login
+)
+
+router.post(
+  '/google',
+  [check('id_token', 'id_token missing').not().isEmpty(), validarCampos],
+  googleSingIn
 )
 
 export default router

@@ -1,5 +1,5 @@
-@URL = http://localhost:8080 
-# @URL =  https://rest-server-basic.onrender.com
+# @URL = http://localhost:8080 
+@URL =  https://rest-server-basic.onrender.com
 
 ### get request
 GET {{URL}}/api/users
