@@ -50,10 +50,6 @@ export const usersPut = async (req, res) => {
 export const usersDelete = async (req, res) => {
   const { id } = req.params
 
-  // borrando fisicamente
-  // const user = await User.findByIdAndDelete(id)
-
-  // change state user
   const user = await User.findByIdAndUpdate(id, { status: false })
   res.json({ user })
 }

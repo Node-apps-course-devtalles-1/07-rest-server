@@ -12,16 +12,16 @@ POST {{URL}}/api/users
 content-type: application/json
 
 {
-    "name": "Henry Gustav17",
+    "name": "Henry Gustav18",
     "google": true,
-    "email": "test17@gmail.com",
+    "email": "test18@gmail.com",
     "password": "123256",
     "role": "VENTAS_ROLE"
 }
 
 ### delete user
-DELETE {{URL}}/api/users/65134a0acfca4f8277deebe2
-
+DELETE {{URL}}/api/users/65134a1dcfca4f8277deebe6
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTEzNGEwYWNmY2E0ZjgyNzdkZWViZTIiLCJpYXQiOjE2OTYzNzkzNjksImV4cCI6MTY5NjM5Mzc2OX0.KGcAMg6-QP1TBC1hMrQTpMSTO5Tt2eTO3FkOlLMJVJE
 ### put request
 PUT {{URL}}/api/users/65130c645ea7136d7d3e168f
 content-type: application/json

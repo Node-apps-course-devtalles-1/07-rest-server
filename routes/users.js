@@ -6,12 +6,16 @@ import {
   usersPut
 } from '../controllers/users.js'
 import { check } from 'express-validator'
-import { validarCampos } from '../middlewares/validar-campos.js'
 import {
   isValidRole,
   verifyEmailExist,
   verifyUserExist
 } from '../helpers/db-validators.js'
+
+import { validarCampos } from '../middlewares/validar-campos.js'
+import { validateJWT } from '../middlewares/validar-jwt.js'
+import { hasRole, isAdminRole } from '../middlewares/validate-rols.js'
+
 const router = Router()
 
 router.get('/', usersGet)
@@ -48,6 +52,9 @@ router.post(
 router.delete(
   '/:id',
   [
+    validateJWT,
+    // isAdminRole,
+    hasRole('ADMIN_ROLE', 'VENTAS_ROLE'),
     check('id', 'Id is not valid').isMongoId(),
     check('id').custom(verifyUserExist),
     validarCampos
