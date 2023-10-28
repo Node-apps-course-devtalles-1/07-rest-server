@@ -1,4 +1,11 @@
 # Rest server
+- App CRUD user model
+- Authentication  google
+- connection Mongo DB.
+- express validator
+
+### Notes 
+View .http files to get available endpoints 
 
 ### Execute
 
