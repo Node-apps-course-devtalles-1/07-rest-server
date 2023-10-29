@@ -67,8 +67,8 @@ export const googleSingIn = async (req, res = response) => {
       // token
     })
   } catch (err) {
-    console.log({ err })
-    res.json(400).json({
+    console.log({ 'error-catch': err })
+    res.status(400).json({
       msg: 'Token could not be verified '
     })
   }
